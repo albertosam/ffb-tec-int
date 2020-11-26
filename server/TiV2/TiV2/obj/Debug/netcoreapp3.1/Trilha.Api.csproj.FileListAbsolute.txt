@@ -1,4 +1,0 @@
-D:\Repositorios\github\ffb\ti\v2\server\TiV2\TiV2\obj\Debug\netcoreapp3.1\Trilha.Api.AssemblyInfoInputs.cache
-D:\Repositorios\github\ffb\ti\v2\server\TiV2\TiV2\obj\Debug\netcoreapp3.1\Trilha.Api.AssemblyInfo.cs
-D:\Repositorios\github\ffb\ti\v2\server\TiV2\TiV2\obj\Debug\netcoreapp3.1\Trilha.Api.csproj.CoreCompileInputs.cache
-D:\Repositorios\github\ffb\ti\v2\server\TiV2\TiV2\obj\Debug\netcoreapp3.1\Trilha.Api.MvcApplicationPartsAssemblyInfo.cache
