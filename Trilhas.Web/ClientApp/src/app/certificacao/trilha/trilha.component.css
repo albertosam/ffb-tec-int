@@ -1,0 +1,45 @@
+.link-detalhe {
+    display: flex;
+    justify-content: space-between !important
+}
+
+.none {
+    display: none;
+}
+
+.list .list-item {
+    display: block;
+    width: 100%;
+    height: 60px;
+    border: 1px dashed #cecece;
+    margin-top: 15px;
+    background-color: #dddddd4a;
+}
+
+.centered {
+    display: grid !important;
+    place-items: center;
+}
+
+.list-cert .list-item {
+    display: grid !important;
+    place-items: center;
+    width: 100%;
+    height: 60px;
+    border: 1px solid #5d5c5c;
+    margin-top: 15px;
+    color: #fff;
+    background-color: #000000ba;
+}
+
+.list{
+    margin-bottom: 10px;
+}
+
+.m-l-md{
+  margin-left: 5px;
+}
+
+.m-t{
+    margin-top: 10px;
+}

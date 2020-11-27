@@ -1,0 +1,62 @@
+<div class="py-5">
+    <div class="card">
+        <h5 class="card-header">Registrar Certificação</h5>
+        <div class="card-body">
+            <!-- <form> -->
+            <div class="form-group">
+                <label>Filtrar Certificação</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" [(ngModel)]="textFilter" placeholder="Informe o código, descrição ou provedor da certificação">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text">Buscar</span>
+                    </div>
+                </div>
+            </div>
+            <!-- </form> -->
+
+            <div id="resultado">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Provedor</th>
+                            <th scope="col">Código</th>
+                            <th scope="col">Descrição</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="novo.provedor" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="novo.codigo" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="novo.descricao" />
+                            </td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" (click)="add(novo)">Criar</button>
+                            </td>
+                        </tr>
+                        <tr *ngFor="let item of itens | filter : textFilter : ['codigo', 'descricao', 'provedor'] ">
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="item.provedor" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="item.codigo" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" [(ngModel)]="item.descricao" />
+                            </td>
+                            <td>
+                                <button class="btn btn-success btn-sm" (click)="update(item.id, item)">Salvar</button>
+                                <button class="btn btn-danger btn-sm m-l-sm" (click)="delete(item.id)">Excluir</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
