@@ -10,11 +10,18 @@ export class CertificacaoService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    debugger;
     return this.http.get(`${environment.endpoint}/certificacao`);
   }
 
   add(entity: any) {
     return this.http.post(`${environment.endpoint}/certificacao`, entity);
+  }
+
+  update(id: string, entity: any) {
+    return this.http.put(`${environment.endpoint}/certificacao/${id}`, entity);
+  }
+
+  delete(id: string) {
+    return this.http.delete(`${environment.endpoint}/certificacao/${id}`);
   }
 }

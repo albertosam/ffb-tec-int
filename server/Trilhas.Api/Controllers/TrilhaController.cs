@@ -14,10 +14,12 @@ namespace Trilhas.Controllers
     public class TrilhaController : ControllerBase
     {
         private readonly ITrilhaRepository _trilhaRepository;
+        private readonly ICertificadoRepository _certificadoRepository;
 
-        public TrilhaController(ITrilhaRepository trilhaRepository)
+        public TrilhaController(ITrilhaRepository trilhaRepository, ICertificadoRepository certificadoRepository)
         {
             _trilhaRepository = trilhaRepository;
+            _certificadoRepository = certificadoRepository;
         }
 
         [HttpGet]
@@ -33,10 +35,19 @@ namespace Trilhas.Controllers
         }
 
         [HttpPost]
-        public Task<Trilha> Post([FromBody] TrilhaCreate novo)
+        public async Task Post([FromBody] TrilhaCreate novo)
         {
-            var trilha = new Trilha { Descricao = novo.Descricao };
-            return _trilhaRepository.AddAsync(trilha);
+            var trilha = new Trilha(novo.Descricao, Convert.ToInt32(novo.Ano), novo.Ativo, novo.Notificar);
+
+            int seq = 0;
+            foreach (var item in novo.Certificacoes)
+            {
+                seq++;
+                var cert = await _certificadoRepository.GetAsync(item.CertificacaoId);
+                trilha.Certificacoes.Add(new TrilhaCertificacao { CertificacaoId = cert.Id, Sequencia = seq });
+            }
+            await _trilhaRepository.AddAsync(trilha);
         }
+
     }
 }

@@ -11,5 +11,6 @@ namespace Trilhas.Domain
         Task<Certificacao> GetAsync(Guid id);
         Task<Certificacao> AddAsync(Certificacao entity);
         Task<Certificacao> UpdateAsync(Certificacao entity);
+        Task DeleteAsync(Guid id);
     }
 }

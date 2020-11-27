@@ -8,6 +8,7 @@ import { Certificacao } from '../certificacao.type';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
+  textFilter: string;
   itens: Certificacao[];
   novo: Certificacao = {
     codigo: '',
@@ -25,8 +26,28 @@ export class RegistroComponent implements OnInit {
     this.ceritificacaoService.getAll().subscribe((res: []) => this.itens = res);
   }
 
+  clearNew() {
+    this.novo = { codigo: '', descricao: '', provedor: '' };
+  }
+
   add(novo: any) {
     this.ceritificacaoService.add(novo).subscribe(res => {
+      this.clearNew();
+      this.loadAll();
+      window.alert('sucesso');
+    });
+  }
+
+  update(id: string, obj: any) {
+    this.ceritificacaoService.update(id, obj).subscribe(res => {
+      this.loadAll();
+      window.alert('sucesso');
+    });
+  }
+
+  delete(id: string) {
+    this.ceritificacaoService.delete(id).subscribe(res => {
+      this.loadAll();
       window.alert('sucesso');
     });
   }

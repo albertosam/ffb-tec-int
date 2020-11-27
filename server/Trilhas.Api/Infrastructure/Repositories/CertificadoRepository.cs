@@ -24,6 +24,13 @@ namespace Trilhas.Infrastructure.Repositories
             return entity;
         }
 
+        public async Task DeleteAsync(Guid id)
+        {
+            var ent = await GetAsync(id);
+            this._context.Remove(ent);
+            await this._context.SaveChangesAsync();
+        }
+
         public Task<List<Certificacao>> GetAllAsync()
         {
             return _context.Certificacoes.ToListAsync();
@@ -36,9 +43,13 @@ namespace Trilhas.Infrastructure.Repositories
                                             .FirstOrDefaultAsync();
         }
 
-        public Task<Certificacao> UpdateAsync(Certificacao entity)
+        public async Task<Certificacao> UpdateAsync(Certificacao entity)
         {
-            throw new NotImplementedException();
+            var entityDatabase = await GetAsync(entity.Id);
+            this._context.Entry(entityDatabase).CurrentValues.SetValues(entity);
+            await _context.SaveChangesAsync();
+
+            return entity;
         }
     }
 }

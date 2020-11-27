@@ -38,5 +38,23 @@ namespace Trilhas.Controllers
             var trilha = new Certificacao { Codigo = novo.Codigo, Descricao = novo.Descricao, Provedor = novo.Provedor };
             return _certificadoRepository.AddAsync(trilha);
         }
+
+        [HttpPut("{id}")]
+        public async Task<Certificacao> Put([FromRoute] Guid id, [FromBody] CertificacaoUpdate update)
+        {
+            var cert = await _certificadoRepository.GetAsync(id);
+
+            cert.Codigo = update.Codigo;
+            cert.Descricao = update.Descricao;
+            cert.Provedor = update.Provedor;
+
+            return await _certificadoRepository.UpdateAsync(cert);
+        }
+
+        [HttpDelete("{id}")]
+        public Task Delete([FromRoute] Guid id)
+        {
+            return _certificadoRepository.DeleteAsync(id);
+        }
     }
 }
